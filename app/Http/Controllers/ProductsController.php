@@ -16,6 +16,15 @@ class ProductsController extends Controller
         ], 200);
     }
 
+    public function getProductsById(Request $request){
+        $userId = $request->query('user_id');
+        $products = Products::where('user_id', $userId)->get();
+        return response()->json([
+            'products' => $products,
+            'method' => 'GET'
+        ], 200);
+    }
+
     public function show($id){
         $product = Products::where('id', $id)->firstorFail();
 
@@ -60,6 +69,6 @@ class ProductsController extends Controller
         return response()->json([
             'count_deleted_row' => $product,
             'method' => 'DELETE'
-        ]);
+        ], 200);
     }
 }

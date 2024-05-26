@@ -23,6 +23,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // crud products
     Route::get('/products', [ProductsController::class, 'index']);
+    Route::get('/show/{id}', [ProductsController::class, 'show']);
+    Route::get('/all', [ProductsController::class, 'getProductsById']);
     Route::post('/products/store', [ProductsController::class, 'store']);
     Route::put('/products/update/{id}', [ProductsController::class, 'update']);
     Route::delete('/products/delete/{id}', [ProductsController::class, 'destroy']);
